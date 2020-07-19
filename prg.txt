@@ -1,4 +1,4 @@
-995 :rem main-prg start
+9995 :rem main-prg start
 1000 print"choose x or o"
 1010 input pc
 1020 if pc <> o then gosub 10000
@@ -22,6 +22,16 @@
 2040 if sp(0,0) <> pc then {main-prg}
 2050 if sp(1,0) <> pc then {main-prg}
 2060 if sp(2,0) <> pc then {main-prg}
+2070 goto 4000
+2035 :rem middle column
+2040 if sp(0,1) <> pc then {main-prg}
+2050 if sp(1,1) <> pc then {main-prg}
+2060 if sp(2,1) <> pc then {main-prg}
+2070 goto 4000
+2035 :rem right column
+2040 if sp(0,2) <> pc then {main-prg}
+2050 if sp(1,2) <> pc then {main-prg}
+2060 if sp(2,2) <> pc then {main-prg}
 2070 goto 4000
 3995 :rem replay menu
 4000 print"you win! Play again?"
