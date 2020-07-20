@@ -11,25 +11,49 @@
 140 if pc$ = "x" then cc$ = "o"
 150 if pc$ = "o" then cc$ = "x"
 160 print"you are "pc$" your opponent is "cc$
-2000 rem start player turn
-2010 dim sp$(2,2):dim x(8):dim y(8)
-2020 for i=0 to 8
-2030 read x1,y1
-2040 x(i)=x1:y(i)=y1
-2050 next
-2060 print"choose a cell"
-2070 get k$:if k$=""then 2070
-2080 c=asc(k$)-48
-2090 if c<0 or c>8 then print"invalid answer":goto 2060
-2100 rem print"coordinates of cell";c;" are:";x(c);y(c):goto 2060
-2110 data 0,0,0,1,0,2
-2120 data 1,0,1,1,1,2
-2130 data 2,0,2,1,2,2
-2140 if sp$(x1,y1) <> " " then goto 10000
-2150 sp$(x1,y1)=pc$
-2160 for i=1 to 8
-2170 on i gosub 3005,3045,3095,3135,3235,3335,3435,3535
-2180 next i
+
+
+500 s=1
+510 s=-(s=0)
+540 print" "sp$(0,0)" * "sp$(0,1)" * "sp$(0,2)
+550 print"**********"
+540 print" "sp$(1,0)" * "sp$(1,1)" * "sp$(1,2)
+550 print"**********"
+540 print" "sp$(2,0)" * "sp$(2,1)" * "sp$(2,2)
+550 if s=0 then 1000
+560 if s=1 then 2000
+
+1000 rem start player turn
+1010 dim sp$(2,2):dim x(8):dim y(8)
+1020 for i=0 to 8
+1030 read x1,y1
+1040 x(i)=x1:y(i)=y1
+1050 next
+1060 print"choose a cell"
+1070 get k$:if k$=""then 2070
+1080 c=val(k$)
+1090 if c<0 or c>8 then print"invalid answer":goto 2060
+1100 rem print"coordinates of cell";c;" are:";x(c);y(c):goto 2060
+1110 data 0,0,0,1,0,2
+1120 data 1,0,1,1,1,2
+1130 data 2,0,2,1,2,2
+1140 if sp$(x1,y1) <> " " then goto 10000
+1150 sp$(x1,y1)=pc$
+1160 for i=1 to 8
+1170 on i gosub 3005,3045,3095,3135,3235,3335,3435,3535
+1180 next i
+1190 goto 500
+
+2000 rem computer turn
+2010 l=int(rnd(1)*2)
+2020 r=int(rnd(1)*2)
+2030 if sp$(l,r) <> " " then 10
+2040 sp$(l,r) = cc$
+2050 for i=1 to 8
+2060 on i gosub 3005,3045,3095,3135,3235,3335,3435,3535
+2080 next i
+2090 goto 500
+
 3005 rem top row
 3010 if sp$(0,0) <> pc$ then return
 3020 if sp$(0,1) <> pc$ then return
