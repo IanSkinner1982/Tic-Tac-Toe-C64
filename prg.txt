@@ -1,4 +1,7 @@
 0 pc$ = "":cc$ = ""
+10 for i=0 to 2:for j=o to 2
+20 sp$(i,j)=" "
+30 next j:next i
 90 rem main-prg start
 95 print"your last answer was invalid. please try again"
 100 print"choose x or o"
@@ -7,7 +10,7 @@
 130 rem computer character select
 140 if pc$ = "x" then cc$ = "o"
 150 if pc$ = "o" then cc$ = "x"
-160 print"you are ":pc$" your opponent is ":cc$
+160 print"you are "pc$" your opponent is "cc$
 2000 rem start player turn
 2010 dim sp$(2,2):dim x(8):dim y(8)
 2020 for i=0 to 8
@@ -19,10 +22,11 @@
 2080 c=asc(k$)-48
 2090 if c<0 or c>8 then print"invalid answer":goto 2060
 2100 rem print"coordinates of cell";c;" are:";x(c);y(c):goto 2060
-2100 data 0,0,0,1,0,2
-2200 data 1,0,1,1,1,2
-2300 data 2,0,2,1,2,2
-2400 sp$(x1,y1)=pc$
+2110 data 0,0,0,1,0,2
+2120 data 1,0,1,1,1,2
+2130 data 2,0,2,1,2,2
+2140 if sp$(x1,y1) <> " " then goto 10000
+2150 sp$(x1,y1)=pc$
 3005 rem top row
 3010 if sp$(0,0) <> pc$ then {main-prg}
 3020 if sp$(0,1) <> pc$ then {main-prg}
@@ -55,3 +59,5 @@
 3070 goto 4000
 3995 rem replay menu
 4000 print"you win! play again?"
+10000 rem incorrect
+10010 
