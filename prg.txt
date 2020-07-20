@@ -1,4 +1,5 @@
-0 pc$ = "":cc$ = ""
+0 rem !to "build/tictactoe.prg"
+1 pc$ = "":cc$ = ""
 10 dim sp$(2,2):dim x(8):dim y(8)
 20 for i=0 to 8
 30 read x1,y1
@@ -32,10 +33,10 @@
 1000 rem start player turn
 
 1060 print"choose a cell"
-1070 get k$:if k$=""then 2070
-1080 c=val(k$)
-1090 if c<0 or c>8 then print"invalid answer":goto 2060
-1100 rem print"coordinates of cell";c;" are:";x(c);y(c):goto 2060
+1070 get k$:if k$=""then 1070
+1080 c=asc(k$)-48
+1090 if c<0 or c>8 then print"invalid answer":goto 1060
+1100 rem print"coordinates of cell";c;" are:";x(c);y(c):goto 1060
 1110 data 0,0,0,1,0,2
 1120 data 1,0,1,1,1,2
 1130 data 2,0,2,1,2,2
@@ -47,12 +48,13 @@
 1190 goto 500
 
 2000 rem computer turn
-2010 l=int(rnd(1)*2)
-2020 r=int(rnd(1)*2)
+2010 l=int(rnd(1)*3)
+2020 r=int(rnd(1)*3)
 2030 if sp$(l,r) <> " " then 2010
 2040 sp$(l,r) = cc$
 2050 for i=1 to 8
 2060 on i gosub 3005,3045,3095,3135,3235,3335,3435,3535
+2070 print i
 2080 next i
 2090 goto 500
 
@@ -99,5 +101,5 @@
 3995 rem replay menu
 4000 print"you win! play again?"
 10000 rem spot taken from 2140
-10010 "this spot has been taken"
-10020 goto 2060
+10010 print"this spot has been taken"
+10020 goto 1060
