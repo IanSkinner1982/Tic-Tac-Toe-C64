@@ -1,43 +1,57 @@
-0 pc$ = 0:cc$ = 0
-990 rem main-prg start
-995 print"your last answer was invalid. please try again"
-1000 print"choose x or o"
-1010 get pc$
-1020 if pc$ <> "o" and pc$ <> "x" then 995
-1030 rem computer character select
-1040 if pc$ = "x" then cc$ = "o"
-1050 if pc$ = "o" then cc$ = "x"
-1060 print"you are ":pc$" your opponent is ":cc$
-2005 rem top row
-2010 if sp$(0,0) <> pc$ then {main-prg}
-2020 if sp$(0,1) <> pc$ then {main-prg}
-2030 if sp$(0,2) <> pc$ then {main-prg}
-2040 goto 4000
-2045 rem middle row
-2060 if sp$(1,0) <> pc$ then {main-prg}
-2070 if sp$(1,1) <> pc$ then {main-prg}
-2080 if sp$(1,2) <> pc$ then {main-prg}
-2090 goto 4000
-2095 rem bottom row
-2000 if sp$(2,0) <> pc$ then {main-prg}
-2010 if sp$(2,1) <> pc$ then {main-prg}
-2020 if sp$(2,2) <> pc$ then {main-prg}
-2030 goto 4000
-2035 rem left column
-2040 if sp$(0,0) <> pc$ then {main-prg}
-2050 if sp$(1,0) <> pc$ then {main-prg}
-2060 if sp$(2,0) <> pc$ then {main-prg}
-2070 goto 4000
-2035 rem middle column
-2040 if sp$(0,1) <> pc$ then {main-prg}
-2050 if sp$(1,1) <> pc$ then {main-prg}
-2060 if sp$(2,1) <> pc$ then {main-prg}
-2070 goto 4000
-2035 rem right column
-2040 if sp$(0,2) <> pc$ then {main-prg}
-2050 if sp$(1,2) <> pc$ then {main-prg}
-2060 if sp$(2,2) <> pc$ then {main-prg}
-2070 goto 4000
+0 pc$ = "":cc$ = ""
+90 rem main-prg start
+95 print"your last answer was invalid. please try again"
+100 print"choose x or o"
+110 get pc$
+120 if pc$ <> "o" and pc$ <> "x" then 95
+130 rem computer character select
+140 if pc$ = "x" then cc$ = "o"
+150 if pc$ = "o" then cc$ = "x"
+160 print"you are ":pc$" your opponent is ":cc$
+2000 rem start player turn
+2010 dim sp$(2,2):dim x(8):dim y(8)
+2020 for i=0 to 8
+2030 read x1,y1
+2040 x(i)=x1:y(i)=y1
+2050 next
+2060 print"choose a cell"
+2070 get k$:if k$=""then 2070
+2080 c=asc(k$)-48
+2090 if c<0 or c>8 then print"invalid answer":goto 2060
+2100 rem print"coordinates of cell";c;" are:";x(c);y(c):goto 2060
+2100 data 0,0,0,1,0,2
+2200 data 1,0,1,1,1,2
+2300 data 2,0,2,1,2,2
+2400 sp$(x1,y1)=pc$
+3005 rem top row
+3010 if sp$(0,0) <> pc$ then {main-prg}
+3020 if sp$(0,1) <> pc$ then {main-prg}
+3030 if sp$(0,2) <> pc$ then {main-prg}
+3040 goto 4000
+3045 rem middle row
+3060 if sp$(1,0) <> pc$ then {main-prg}
+3070 if sp$(1,1) <> pc$ then {main-prg}
+3080 if sp$(1,2) <> pc$ then {main-prg}
+3090 goto 4000
+3095 rem bottom row
+3000 if sp$(2,0) <> pc$ then {main-prg}
+3010 if sp$(2,1) <> pc$ then {main-prg}
+3020 if sp$(2,2) <> pc$ then {main-prg}
+3030 goto 4000
+3035 rem left column
+3040 if sp$(0,0) <> pc$ then {main-prg}
+3050 if sp$(1,0) <> pc$ then {main-prg}
+3060 if sp$(2,0) <> pc$ then {main-prg}
+3070 goto 4000
+3035 rem middle column
+3040 if sp$(0,1) <> pc$ then {main-prg}
+3050 if sp$(1,1) <> pc$ then {main-prg}
+3060 if sp$(2,1) <> pc$ then {main-prg}
+3070 goto 4000
+3035 rem right column
+3040 if sp$(0,2) <> pc$ then {main-prg}
+3050 if sp$(1,2) <> pc$ then {main-prg}
+3060 if sp$(2,2) <> pc$ then {main-prg}
+3070 goto 4000
 3995 rem replay menu
 4000 print"you win! play again?"
-
