@@ -1,18 +1,24 @@
 0 pc$ = "":cc$ = ""
-10 for i=0 to 2:for j=o to 2
-20 sp$(i,j)=" "
-30 next j:next i
-90 rem main-prg start
-95 print"your last answer was invalid. please try again"
-100 print"choose x or o"
-110 get pc$
-120 if pc$ <> "o" and pc$ <> "x" then 95
-130 rem computer character select
-140 if pc$ = "x" then cc$ = "o"
-150 if pc$ = "o" then cc$ = "x"
-160 print"you are "pc$" your opponent is "cc$
+10 dim sp$(2,2):dim x(8):dim y(8)
+20 for i=0 to 8
+30 read x1,y1
+40 x(i)=x1:y(i)=y1
+50 next
+110 for i=0 to 2:for j=o to 2
+120 sp$(i,j)=" "
+130 next j:next i
+140 goto 200
+190 rem main-prg start
+195 print"your last answer was invalid. please try again"
+200 print"choose x or o"
+210 get pc$:if pc$ = ""then 210
+220 if pc$ <> "o" and pc$ <> "x" then 195
+230 rem computer character select
+240 if pc$ = "x" then cc$ = "o"
+250 if pc$ = "o" then cc$ = "x"
+260 print"you are "pc$" your opponent is "cc$
 
-
+490 rem main loop start
 500 s=1
 510 s=-(s=0)
 540 print" "sp$(0,0)" * "sp$(0,1)" * "sp$(0,2)
@@ -24,11 +30,7 @@
 560 if s=1 then 2000
 
 1000 rem start player turn
-1010 dim sp$(2,2):dim x(8):dim y(8)
-1020 for i=0 to 8
-1030 read x1,y1
-1040 x(i)=x1:y(i)=y1
-1050 next
+
 1060 print"choose a cell"
 1070 get k$:if k$=""then 2070
 1080 c=val(k$)
@@ -47,7 +49,7 @@
 2000 rem computer turn
 2010 l=int(rnd(1)*2)
 2020 r=int(rnd(1)*2)
-2030 if sp$(l,r) <> " " then 10
+2030 if sp$(l,r) <> " " then 2010
 2040 sp$(l,r) = cc$
 2050 for i=1 to 8
 2060 on i gosub 3005,3045,3095,3135,3235,3335,3435,3535
