@@ -28,36 +28,37 @@
 2140 if sp$(x1,y1) <> " " then goto 10000
 2150 sp$(x1,y1)=pc$
 3005 rem top row
-3010 if sp$(0,0) <> pc$ then {main-prg}
-3020 if sp$(0,1) <> pc$ then {main-prg}
-3030 if sp$(0,2) <> pc$ then {main-prg}
-3040 goto 4000
+3010 if sp$(0,0) <> pc$ then return
+3020 if sp$(0,1) <> pc$ then return
+3030 if sp$(0,2) = pc$ then 4000
+3040 return
 3045 rem middle row
-3060 if sp$(1,0) <> pc$ then {main-prg}
-3070 if sp$(1,1) <> pc$ then {main-prg}
-3080 if sp$(1,2) <> pc$ then {main-prg}
-3090 goto 4000
+3060 if sp$(1,0) <> pc$ then 
+3070 if sp$(1,1) <> pc$ then 
+3080 if sp$(1,2) = pc$ then 4000
+3090 return
 3095 rem bottom row
-3000 if sp$(2,0) <> pc$ then {main-prg}
-3010 if sp$(2,1) <> pc$ then {main-prg}
-3020 if sp$(2,2) <> pc$ then {main-prg}
-3030 goto 4000
+3000 if sp$(2,0) <> pc$ then return
+3010 if sp$(2,1) <> pc$ then return
+3020 if sp$(2,2) = pc$ then 4000
+3030 return
 3035 rem left column
-3040 if sp$(0,0) <> pc$ then {main-prg}
-3050 if sp$(1,0) <> pc$ then {main-prg}
-3060 if sp$(2,0) <> pc$ then {main-prg}
-3070 goto 4000
+3040 if sp$(0,0) <> pc$ then return 
+3050 if sp$(1,0) <> pc$ then return 
+3060 if sp$(2,0) = pc$ then 4000
+3070 return
 3035 rem middle column
-3040 if sp$(0,1) <> pc$ then {main-prg}
-3050 if sp$(1,1) <> pc$ then {main-prg}
-3060 if sp$(2,1) <> pc$ then {main-prg}
-3070 goto 4000
+3040 if sp$(0,1) <> pc$ then return 
+3050 if sp$(1,1) <> pc$ then return 
+3060 if sp$(2,1) = pc$ then 4000
+3070 return
 3035 rem right column
-3040 if sp$(0,2) <> pc$ then {main-prg}
-3050 if sp$(1,2) <> pc$ then {main-prg}
-3060 if sp$(2,2) <> pc$ then {main-prg}
-3070 goto 4000
+3040 if sp$(0,2) <> pc$ then return 
+3050 if sp$(1,2) <> pc$ then return 
+3060 if sp$(2,2) = pc$ then 4000
+3070 return
 3995 rem replay menu
 4000 print"you win! play again?"
-10000 rem incorrect
-10010 
+10000 rem spot taken from 2140
+10010 "this spot has been taken"
+10020 goto 2060
