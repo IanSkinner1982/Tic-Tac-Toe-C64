@@ -85,14 +85,14 @@
 3360 if sp$(2,2) = pc$ then 4000
 3370 return
 3435 rem diagonal 1
-3440 if sp$(0,2) <> pc$ then return 
-3450 if sp$(1,2) <> pc$ then return 
+3440 if sp$(0,0) <> pc$ then return 
+3450 if sp$(1,1) <> pc$ then return 
 3460 if sp$(2,2) = pc$ then 4000
 3470 return
 3535 rem diagonal 2
 3540 if sp$(0,2) <> pc$ then return 
-3550 if sp$(1,2) <> pc$ then return 
-3560 if sp$(2,2) = pc$ then 4000
+3550 if sp$(1,1) <> pc$ then return 
+3560 if sp$(2,0) = pc$ then 4000
 3570 return
 3995 rem replay menu
 4000 print"you win! play again?"
