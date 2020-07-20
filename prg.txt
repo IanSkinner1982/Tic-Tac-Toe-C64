@@ -1,7 +1,11 @@
 995 :rem main-prg start
 1000 print"choose x or o"
 1010 input pc$
-1020 if pc$ <> "o" and pc$ <> "x" then goto 10000
+1020 if pc$ <> "o" and pc$ <> "x" then 10000
+1030 :rem computer character select
+1040 if pc$ = "x" then cc$ = "o"
+1050 if pc$ = "o" then cc$ = "x"
+1060 print"you are ":pc$" your opponent is ":cc$
 2005 :rem top row
 2010 if sp$(0,0) <> pc$ then {main-prg}
 2020 if sp$(0,1) <> pc$ then {main-prg}
@@ -33,7 +37,7 @@
 2060 if sp$(2,2) <> pc$ then {main-prg}
 2070 goto 4000
 3995 :rem replay menu
-4000 print"you win! Play again?"
+4000 print"you win! play again?"
 9995 :rem from main-prg (line 1030)
 10000 print"invalid input"
 10010 print"please try again"
