@@ -21,7 +21,9 @@
 
 490 rem main loop start
 500 s=1
-510 s=-(s=0)
+505 s=-(s=0)
+510 print"tic tac toe c64 by ianskinner1982"
+515 print"v0.0.1"
 520 print" "sp$(0,0)" * "sp$(0,1)" * "sp$(0,2)
 530 print"**********"
 540 print" "sp$(1,0)" * "sp$(1,1)" * "sp$(1,2)
@@ -31,7 +33,6 @@
 580 if s=1 then 2000
 
 1000 rem start player turn
-
 1060 print"choose a cell"
 1070 get k$:if k$=""then 1070
 1080 c=asc(k$)-48
@@ -40,6 +41,7 @@
 1110 data 0,0,0,1,0,2
 1120 data 1,0,1,1,1,2
 1130 data 2,0,2,1,2,2
+1140 x1=x(c):y1=(c):print sp$(x1,y1)
 1150 if sp$(x1,y1) <> " " then goto 10000
 1155 sp$(x1,y1)=pc$
 1160 for i=1 to 8
