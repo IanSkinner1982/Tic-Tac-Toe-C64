@@ -43,6 +43,7 @@
 1140 x1=x(c):y1=y(c):print sp$(x1,y1)
 1150 if sp$(x1,y1) <> " " then gosub 10000
 1155 sp$(x1,y1)=pc$
+1157 tk$=pc$:rem set token to pc$
 1160 for i=1 to 8
 1170 on i gosub 3005,3045,3095,3135,3235,3335,3435,3535
 1180 next i
@@ -60,47 +61,49 @@
 2090 goto 500
 
 3005 rem top row
-3010 if sp$(0,0) <> pc$ or sp$(0,0) <> cc$ then return
-3020 if sp$(0,1) <> pc$ or sp$(0,1) <> cc$ then return
-3030 if sp$(0,2) = pc$ or sp$(0,2) = cc$ then 4000
+3006 rem tk$ : "token" (X or O)
+3010 if sp$(0,0) = tk$ and sp$(0,1) = tk$ and sp$(0,2) = tk$ then 4000
 3040 return
+
 3045 rem middle row
-3060 if sp$(1,0) <> pc$ or sp$(1,0) <> cc$ then return
-3070 if sp$(1,1) <> pc$ or sp$(1,1) <> cc$ then return
-3080 if sp$(1,2) = pc$ or sp$(1,2) = cc$ then 4000
+3060 if sp$(1,0) <> pc$ then return
+3070 if sp$(1,1) <> pc$ then return
+3080 if sp$(1,2) = pc$ then 4000
 3090 return
 3095 rem bottom row
-3100 if sp$(2,0) <> pc$ or sp$(2,0) <> cc$ then return
-3110 if sp$(2,1) <> pc$ or sp$(2,1) <> cc$ then return
-3120 if sp$(2,2) = pc$ or sp$(2,2) = cc$ then 4000
+3100 if sp$(2,0) <> pc$ then return
+3110 if sp$(2,1) <> pc$ then return
+3120 if sp$(2,2) = pc$ 4000
 3130 return
 3135 rem left column
-3140 if sp$(0,0) <> pc$ or sp$(0,0) <> cc$ then return
-3150 if sp$(1,0) <> pc$ or sp$(1,0) <> cc$ then return
-3160 if sp$(2,0) = pc$ or sp$(2,0) = cc$ then 4000
+3140 if sp$(0,0) <> pc$ then return
+3150 if sp$(1,0) <> pc$ then return
+3160 if sp$(2,0) = pc$ then 4000
 3170 return
 3235 rem middle column
-3240 if sp$(0,1) <> pc$ or sp$(0,1) <> cc$ then return
-3250 if sp$(1,1) <> pc$ or sp$(1,1) <> cc$ then return 
-3260 if sp$(2,1) = pc$ or sp$(2,1) = cc$ then 4000
+3240 if sp$(0,1) <> pc$ then return
+3250 if sp$(1,1) <> pc$ then return 
+3260 if sp$(2,1) = pc$ then 4000
 3270 return
 3335 rem right column
-3340 if sp$(0,2) <> pc$ or sp$(0,2) <> cc$ then return
-3350 if sp$(1,2) <> pc$ or sp$(1,2) <> cc$ then return
-3360 if sp$(2,2) = pc$ or sp$(2,2) = cc$ then 4000
+3340 if sp$(0,2) <> pc$ then return
+3350 if sp$(1,2) <> pc$ then return
+3360 if sp$(2,2) = pc$ then 4000
 3370 return
 3435 rem diagonal 1
-3440 if sp$(0,0) <> pc$ or sp$(0,0) <> cc$ then return 
-3450 if sp$(1,1) <> pc$ or sp$(1,1) <> cc$ then return 
-3460 if sp$(2,2) = pc$ or sp$(2,2) = cc$ then 4000
+3440 if sp$(0,0) <> pc$ then return 
+3450 if sp$(1,1) <> pc$ then return 
+3460 if sp$(2,2) = pc$ then 4000
 3470 return
 3535 rem diagonal 2
-3540 if sp$(0,2) <> pc$ or sp$(0,2) <> cc$ then return
-3550 if sp$(1,1) <> pc$ or sp$(1,1) <> cc$ then return 
-3560 if sp$(2,0) = pc$ or sp$(2,0) = cc$ then 4000
+3540 if sp$(0,2) <> pc$ then return
+3550 if sp$(1,1) <> pc$ then return 
+3560 if sp$(2,0) = pc$ then 4000
 3570 return
 3995 rem replay menu
 4000 print"you win! play again?"
+5000 print"not implemented yet"
+5010 stop
 
 7000 rem incorrect 
 
