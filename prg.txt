@@ -1,5 +1,6 @@
 0 rem !to "build/tictactoe.prg"
 1 pc$ = "":cc$ = ""
+5 print"{clear}"
 10 dim sp$(2,2):dim x(8):dim y(8)
 20 for i=0 to 8
 30 read x1,y1
@@ -12,15 +13,15 @@
 190 rem main-prg start
 200 print"choose x or o"
 210 get pc$:if pc$ = ""then 210
-220 if pc$ <> "o" and pc$ <> "x" then gosub 10100
+220 if pc$ <> "o" and pc$ <> "x" then goto 10100
 230 rem computer character select
 240 if pc$ = "x" then cc$ = "o"
 250 if pc$ = "o" then cc$ = "x"
 260 print"you are "pc$" your opponent is "cc$
 
 490 rem main loop start
-500 s=1
-505 s=-(s=0)
+495 t=1
+500 t=-(t=0)
 510 print"tic tac toe c64 by ianskinner1982"
 515 print"v0.0.1"
 520 print" "sp$(0,0)" * "sp$(0,1)" * "sp$(0,2)
@@ -28,8 +29,8 @@
 540 print" "sp$(1,0)" * "sp$(1,1)" * "sp$(1,2)
 550 print"**********"
 560 print" "sp$(2,0)" * "sp$(2,1)" * "sp$(2,2)
-570 if s=0 then 1000
-580 if s=1 then 2000
+570 if t=0 then 1000
+580 if t=1 then 2000
 
 1000 rem start player turn
 1060 print"choose a cell"
@@ -41,7 +42,7 @@
 1120 data 1,0,1,1,1,2
 1130 data 2,0,2,1,2,2
 1140 x1=x(c):y1=y(c):print sp$(x1,y1)
-1150 if sp$(x1,y1) <> " " then gosub 10000
+1150 if sp$(x1,y1) <> " " then goto 10000
 1155 sp$(x1,y1)=pc$
 1157 tk$=pc$:rem set token to pc$
 1160 for i=1 to 8
@@ -54,9 +55,9 @@
 2020 r=int(rnd(1)*3)
 2030 if sp$(l,r) <> " " then 2000
 2040 sp$(l,r) = cc$
+2045 tk$=cc$:rem set token to cc$
 2050 for i=1 to 8
 2060 on i gosub 3005,3045,3095,3135,3235,3335,3435,3535
-2070 print i
 2080 next i
 2090 goto 500
 
@@ -66,42 +67,45 @@
 3040 return
 
 3045 rem middle row
-3060 if sp$(1,0) <> pc$ then return
-3070 if sp$(1,1) <> pc$ then return
-3080 if sp$(1,2) = pc$ then 4000
+3060 if sp$(1,0) = tk$ and sp$(1,1) = tk$ and sp$(1,2) = tk$ then 4000
 3090 return
+
 3095 rem bottom row
-3100 if sp$(2,0) <> pc$ then return
-3110 if sp$(2,1) <> pc$ then return
-3120 if sp$(2,2) = pc$ 4000
+3100 if sp$(2,0) = tk$ and sp$(2,1) = tk$ and sp$(2,2) = tk$ then 4000
 3130 return
+
 3135 rem left column
-3140 if sp$(0,0) <> pc$ then return
-3150 if sp$(1,0) <> pc$ then return
-3160 if sp$(2,0) = pc$ then 4000
+3140 if sp$(0,0) = tk$ and sp$(1,0) = tk$ and sp$(2,0) = tk$ then 4000
 3170 return
+
 3235 rem middle column
-3240 if sp$(0,1) <> pc$ then return
-3250 if sp$(1,1) <> pc$ then return 
-3260 if sp$(2,1) = pc$ then 4000
+3240 if sp$(0,1) = tk$ and sp$(1,1) = tk$ and sp$(2,1) = tk$ then 4000
 3270 return
+
 3335 rem right column
-3340 if sp$(0,2) <> pc$ then return
-3350 if sp$(1,2) <> pc$ then return
-3360 if sp$(2,2) = pc$ then 4000
+3340 if sp$(0,2) = tk$ and sp$(1,2) = tk$ and sp$(2,2) = tk$ then 4000
 3370 return
+
 3435 rem diagonal 1
-3440 if sp$(0,0) <> pc$ then return 
-3450 if sp$(1,1) <> pc$ then return 
-3460 if sp$(2,2) = pc$ then 4000
+3440 if sp$(0,0) = tk$ and sp$(1,1) = tk$ and sp$(2,2) = tk$ then 4000
 3470 return
+
 3535 rem diagonal 2
-3540 if sp$(0,2) <> pc$ then return
-3550 if sp$(1,1) <> pc$ then return 
-3560 if sp$(2,0) = pc$ then 4000
+3540 if sp$(0,2) = tk$ and sp$(1,1) = tk$ and sp$(2,0) = tk$ then 4000
 3570 return
+
 3995 rem replay menu
-4000 print"you win! play again?"
+
+4000 if tk$=pc$ then 4300
+4010 if tk$=cc$ then 4500 
+4020 print"you shouldn't be seeing this"
+4030 stop
+4300 print"you win! play again? (y/n)"
+4310 get k$:if k$=""then 4310
+4400 print"not implemented yet"
+4410 stop
+4500 print"computer wins! play again? (y/n)"
+4510 get k$:if k$=""then 4510
 5000 print"not implemented yet"
 5010 stop
 
@@ -109,6 +113,7 @@
 
 10000 rem from 1150
 10010 print"this spot has been taken"
-10020 return
+10020 goto 1060
 10100 rem from 220
-10110 print"your last answer was invalid. please try again"
+10110 print"your last answer was invalid. please try again"  
+10120 goto 200 
