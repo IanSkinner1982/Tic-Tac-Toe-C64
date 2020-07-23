@@ -22,6 +22,7 @@
 490 rem main loop start
 495 t=1
 500 t=-(t=0)
+505 print"{clear}"
 510 print"tic tac toe c64 by ianskinner1982"
 515 print"v0.0.1"
 520 print" "sp$(0,0)" * "sp$(0,1)" * "sp$(0,2)
@@ -113,7 +114,9 @@
 
 10000 rem from 1150
 10010 print"this spot has been taken"
-10020 goto 1060
+10015 print"press 'c' to continue"
+10020 get k$:if k$=""then 10020
+10025 goto 505
 10100 rem from 220
 10110 print"your last answer was invalid. please try again"  
 10120 goto 200 
