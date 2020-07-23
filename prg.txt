@@ -9,9 +9,9 @@
 110 for i=0 to 2:for j=o to 2
 120 sp$(i,j)=" "
 130 next j:next i
-140 goto 200
 190 rem main-prg start
-200 print"choose x or o"
+200 print"{clear}"
+205 print"choose x or o"
 210 get pc$:if pc$ = ""then 210
 220 if pc$ <> "o" and pc$ <> "x" then goto 10100
 230 rem computer character select
@@ -23,13 +23,19 @@
 495 t=1
 500 t=-(t=0)
 505 print"{clear}"
-510 print"tic tac toe c64 by ianskinner1982"
-515 print"v0.0.1"
+507 print"tic tac toe c64 by ianskinner1982"
+510 print"v0.0.1"
+515 print"   *   *          cell numbers"
 520 print" "sp$(0,0)" * "sp$(0,1)" * "sp$(0,2)
-530 print"**********"
-540 print" "sp$(1,0)" * "sp$(1,1)" * "sp$(1,2)
-550 print"**********"
+525 print"   *   *  "
+530 print"***********        0 * 1 * 2"
+535 print"   *   *           *********"
+540 print" "sp$(1,0)" * "sp$(1,1)" * "sp$(1,2)"         3 * 4 * 5"
+545 print"   *   *           *********"
+550 print"***********        6 * 7 * 8"
+555 print"   *   *   "
 560 print" "sp$(2,0)" * "sp$(2,1)" * "sp$(2,2)
+565 print"   *   *  "
 570 if t=0 then 1000
 580 if t=1 then 2000
 
@@ -103,11 +109,13 @@
 4030 stop
 4300 print"you win! play again? (y/n)"
 4310 get k$:if k$=""then 4310
-4400 print"not implemented yet"
-4410 stop
+4315 if k$="n"then 20000
+4320 goto 4800
 4500 print"computer wins! play again? (y/n)"
 4510 get k$:if k$=""then 4510
-5000 print"not implemented yet"
+4515 if k$="n"then 20000
+4520 goto 4800
+4800 goto 200
 5010 stop
 
 7000 rem incorrect 
@@ -120,3 +128,5 @@
 10100 rem from 220
 10110 print"your last answer was invalid. please try again"  
 10120 goto 200 
+
+20000 end 
