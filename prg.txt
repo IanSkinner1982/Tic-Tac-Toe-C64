@@ -112,12 +112,13 @@
 4300 print"you win! play again? (y/n)"
 4310 get k$:if k$=""then 4310
 4315 if k$="n"then 60000
-4320 goto 4800
+4800 if k$="y" then 110
+4320 goto 4310
 4500 print"computer wins! play again? (y/n)"
 4510 get k$:if k$=""then 4510
 4515 if k$="n"then 60000
-4520 goto 4800
-4800 goto 180
+4800 if k$="y" then 110
+4520 goto 4510
 5010 stop
 
 7000 rem incorrect 
@@ -126,49 +127,39 @@
 10010 print"this spot has been taken"
 10015 print"press 'c' to continue"
 10020 get k$:if k$=""then 10020
-10025 goto 505
+10030 if k$="c"then505
+10040 goto 10020
 10100 rem from 220
 10110 print"your last answer was invalid. please try again"  
 10120 goto 180 
 
 30000 rem settings menu
-30005 sb=14:ss=6
-30030 print"{clear}"
-30035 print "press 'b' to change the border"
-30040 print "press 's' to change screen"
-30045 print "press 'r' to return"
-30050 get k$:if k$ = "" then 30050
-30055 rem border
-30060 if k$ = "b" then sb = sb+1
-30070 if sb > 15 then sb = 0
-30080 poke53280,sb
-30085 rem screen
-30090 if k$ = "s" then ss = ss+1
-30100 if ss > 15 then ss = 0
-30110 poke53281,ss
-30115 rem return to main prg
-30120 if k$ = "r" then 180
-30130 goto 30050
+30005 sb=14:ss=6:tc=14
+30010 print"{clear}"
+30020 print "press 'b' to change the border"
+30030 print "press 's' to change screen"
+30040 print "press 'r' to return"
+30050 print "press 't' to change text color"
+30060 get k$:if k$ = "" then 30060
+
+30180 rem return to main prg
+30190 if k$ = "r" then 180
+
+31070 rem border
+31080 if k$ = "b" then sb = sb+1
+31090 if sb > 15 then sb = 0
+31100 poke53280,sb
+
+31110 rem screen
+31120 if k$ = "s" then ss = ss+1
+31130 if ss > 15 then ss = 0
+31140 poke53281,ss
+
+31150 rem text
+31155 if k$ = "t" then tc = tc+1
+31160 if tc > 16 then tc = 1
+31170 poke646,tc:goto 30010
+
+30190 goto 30060
 
 60000 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
