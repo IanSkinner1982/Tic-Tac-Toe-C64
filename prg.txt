@@ -9,10 +9,12 @@
 110 for i=0 to 2:for j=o to 2
 120 sp$(i,j)=" "
 130 next j:next i
-190 rem main-prg start
-200 print"{clear}"
-205 print"choose x or o"
+170 rem main-prg start
+180 print"{clear}"
+190 print"choose x or o"
+200 print"or press s for settings"
 210 get pc$:if pc$ = ""then 210
+215 if pc$ = "s" then 30000
 220 if pc$ <> "o" and pc$ <> "x" then goto 10100
 230 rem computer character select
 240 if pc$ = "x" then cc$ = "o"
@@ -109,13 +111,13 @@
 4030 stop
 4300 print"you win! play again? (y/n)"
 4310 get k$:if k$=""then 4310
-4315 if k$="n"then 20000
+4315 if k$="n"then 60000
 4320 goto 4800
 4500 print"computer wins! play again? (y/n)"
 4510 get k$:if k$=""then 4510
-4515 if k$="n"then 20000
+4515 if k$="n"then 60000
 4520 goto 4800
-4800 goto 200
+4800 goto 180
 5010 stop
 
 7000 rem incorrect 
@@ -127,6 +129,46 @@
 10025 goto 505
 10100 rem from 220
 10110 print"your last answer was invalid. please try again"  
-10120 goto 200 
+10120 goto 180 
 
-20000 end 
+30000 rem settings menu
+30005 sb=14:ss=6
+30030 print"{clear}"
+30035 print "press 'b' to change the border"
+30040 print "press 's' to change screen"
+30045 print "press 'r' to return"
+30050 get k$:if k$ = "" then 30050
+30055 rem border
+30060 if k$ = "b" then sb = sb+1
+30070 if sb > 15 then sb = 0
+30080 poke53280,sb
+30085 rem screen
+30090 if k$ = "s" then ss = ss+1
+30100 if ss > 15 then ss = 0
+30110 poke53281,ss
+30115 rem return to main prg
+30120 if k$ = "r" then 180
+30130 goto 30050
+
+60000 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
