@@ -1,7 +1,8 @@
 0 rem !to "build/tictactoe.prg"
 1 pc$ = "":cc$ = ""
 5 print"{clear}"
-10 dim sp$(2,2):dim x(8):dim y(8)
+
+10 dim sp$(2,2):dim x(8):dim y(8): rem array setup
 20 for i=0 to 8
 30 read x1,y1
 40 x(i)=x1:y(i)=y1
@@ -9,8 +10,10 @@
 110 for i=0 to 2:for j=o to 2
 120 sp$(i,j)=" "
 130 next j:next i
+
 170 rem main-prg start
-180 print"{clear}"
+175 gosub 40000
+180 print"{clear}{home}wins: "wi" losses: "lo
 190 print"choose x or o"
 200 print"or press s for settings"
 210 get pc$:if pc$ = ""then 210
@@ -26,18 +29,18 @@
 500 t=-(t=0)
 505 print"{clear}"
 507 print"tic tac toe c64 by ianskinner1982"
-510 print"v0.0.1"
-515 print"   *   *          cell numbers"
-520 print" "sp$(0,0)" * "sp$(0,1)" * "sp$(0,2)
-525 print"   *   *  "
-530 print"***********        0 * 1 * 2"
-535 print"   *   *           *********"
-540 print" "sp$(1,0)" * "sp$(1,1)" * "sp$(1,2)"         3 * 4 * 5"
-545 print"   *   *           *********"
-550 print"***********        6 * 7 * 8"
-555 print"   *   *   "
-560 print" "sp$(2,0)" * "sp$(2,1)" * "sp$(2,2)
-565 print"   *   *  "
+510 print"v1.1.2"
+515 print"   B   B          cell numbers"
+520 print" "sp$(0,0)" B "sp$(0,1)" B "sp$(0,2)
+525 print"   B   B  "
+530 print"CCCCCCCCCCC        0 B 1 B 2"
+535 print"   B   B           CCCCCCCCC"
+540 print" "sp$(1,0)" B "sp$(1,1)" B "sp$(1,2)"         3 B 4 B 5"
+545 print"   B   B           CCCCCCCC"
+550 print"CCCCCCCCCCC        6 B 7 B 8"
+555 print"   B   B   "
+560 print" "sp$(2,0)" B "sp$(2,1)" B "sp$(2,2)
+565 print"   B   B  "
 570 if t=0 then 1000
 580 if t=1 then 2000
 
@@ -45,8 +48,8 @@
 1060 print"choose a cell"
 1070 get k$:if k$=""then 1070
 1080 c=asc(k$)-48
-1090 if c<0 or c>8 then print"invalid answer":goto 1060
-1100 rem print"coordinates of cell";c;" are:";x(c);y(c):goto 1060
+1090 if c<0 or c>8 then print"invalid input":goto 1060
+1100 rem DEBUG LINE print"coordinates of cell";c;" are:";x(c);y(c):goto 1060
 1110 data 0,0,0,1,0,2
 1120 data 1,0,1,1,1,2
 1130 data 2,0,2,1,2,2
@@ -109,16 +112,16 @@
 4010 if tk$=cc$ then 4500 
 4020 print"you shouldn't be seeing this"
 4030 stop
-4300 print"you win! play again? (y/n)"
+4300 print"you win!"
+4304 wi=wi+1
+4306 gosub 40100
 4310 get k$:if k$=""then 4310
-4315 if k$="n"then 60000
-4800 if k$="y" then 110
-4320 goto 4310
-4500 print"computer wins! play again? (y/n)"
+4800 goto 110
+4500 print"computer wins!"
+4504 lo=lo+1
+4506 gosub 40100
 4510 get k$:if k$=""then 4510
-4515 if k$="n"then 60000
-4800 if k$="y" then 110
-4520 goto 4510
+4500 goto 110
 5010 stop
 
 7000 rem incorrect 
@@ -143,23 +146,44 @@
 30060 get k$:if k$ = "" then 30060
 
 30180 rem return to main prg
+
 30190 if k$ = "r" then 180
+30190 goto 30060
 
 31070 rem border
 31080 if k$ = "b" then sb = sb+1
 31090 if sb > 15 then sb = 0
 31100 poke53280,sb
-
 31110 rem screen
 31120 if k$ = "s" then ss = ss+1
 31130 if ss > 15 then ss = 0
 31140 poke53281,ss
-
 31150 rem text
 31155 if k$ = "t" then tc = tc+1
 31160 if tc > 16 then tc = 1
 31170 poke646,tc:goto 30010
 
-30190 goto 30060
 
-60000 end
+
+40000 rem loading save data
+40010 open 8,8,8,"tictactoe.sav,s,r" 
+40020 input#8,wi
+40030 input#8,lo
+40060 close 8
+40070 return
+
+40100 rem writing save data
+40110 open 8,8,8,"@0:tictactoe.sav,s,w"
+40120 print#8,wi
+40130 print#8,lo
+40160 close 8
+40170 return
+
+
+
+
+
+
+
+
+

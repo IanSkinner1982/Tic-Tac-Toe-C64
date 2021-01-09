@@ -1,0 +1,5 @@
+# Mac files
+.DS_Store
+build/.DS_Store
+# saves
+build/tictactoe.sav
